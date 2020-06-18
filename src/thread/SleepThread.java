@@ -11,7 +11,7 @@ public class SleepThread extends Thread{
         for(int i=0;i<50;i++) {
             System.out.println(Thread.currentThread().getName()+".........."+i);
 //            try {
-//                //线程放弃
+//                //线程休眠
 //                Thread.sleep(300);
 //                //线程放弃
 //                //Thread.yield();
