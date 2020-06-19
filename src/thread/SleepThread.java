@@ -36,6 +36,8 @@ class SleepThreadTest{
         s1.setPriority(1);
         s3.setPriority(10);
 
+        //设置线程为守护线程
+        //s1.setDaemon(true);
         s1.start();
 //        try {
 //            //线程加入，并阻塞当前线程，直到加入线程执行完
