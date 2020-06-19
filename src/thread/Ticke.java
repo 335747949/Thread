@@ -1,5 +1,7 @@
 package thread;
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
+
 /**
  * 共享资源（共卖100张票）
  * @author lanwei
@@ -8,15 +10,22 @@ package thread;
 public class Ticke implements Runnable{
 
     private int ticke = 100;
-
+    Object object = new Object();
     @Override
     public void run() {
         while(true) {
-            if(ticke<=0){
-                break;
+            synchronized (object){
+                if(ticke<=0){
+                    break;
+                }
+                System.out.println(Thread.currentThread().getName()+"卖了"+ticke+"张票");
+                ticke--;
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            System.out.println(Thread.currentThread().getName()+"卖了"+ticke+"张票");
-            ticke--;
         }
     }
 }

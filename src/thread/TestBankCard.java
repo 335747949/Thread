@@ -13,8 +13,10 @@ public class TestBankCard {
             @Override
             public void run() {
                 for(int i=0;i<10;i++) {
-                    bankCard.setCard(bankCard.getCard()+1000);
-                    System.out.println(Thread.currentThread().getName()+"存了1000块，余额为："+bankCard.getCard());
+                    synchronized (bankCard){
+                        bankCard.setCard(bankCard.getCard()+1000);
+                        System.out.println(Thread.currentThread().getName()+"存了1000块，余额为："+bankCard.getCard());
+                    }
                 }
             }
         };
@@ -23,12 +25,14 @@ public class TestBankCard {
             @Override
             public void run() {
                 for(int i=0;i<10;i++){
-                    if(bankCard.getCard()>=1000){
-                        bankCard.setCard(bankCard.getCard()-1000);
-                        System.out.println(Thread.currentThread().getName()+"取了1000块，余额为："+bankCard.getCard());
-                    }else {
-                        System.out.println("余额不足，请赶快存钱！");
-                        i--;
+                    synchronized (bankCard){
+                        if(bankCard.getCard()>=1000){
+                            bankCard.setCard(bankCard.getCard()-1000);
+                            System.out.println(Thread.currentThread().getName()+"取了1000块，余额为："+bankCard.getCard());
+                        }else {
+                            System.out.println("余额不足，请赶快存钱！");
+                            i--;
+                        }
                     }
                 }
             }

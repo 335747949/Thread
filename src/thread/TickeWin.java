@@ -1,7 +1,9 @@
 package thread;
 
 
+
 /**
+ * 四个窗口给卖30张票
  * @author lanwei
  * @email 335747949@qq.com
  */
@@ -28,11 +30,11 @@ class TickeWinow extends Thread{
     public void run() {
         int ticke = 30;
         while(true) {
-            if(ticke <= 0) {
-                break;
-            }
-            System.out.println(Thread.currentThread().getName()+"卖了第"+ticke+"张票");
-            ticke--;
+                if(ticke <= 0) {
+                    break;
+                }
+                System.out.println(Thread.currentThread().getName()+"卖了第"+ticke+"张票");
+                ticke--;
         }
     }
 }
