@@ -14,9 +14,14 @@ public class TestBankCard {
 
         Thread thread01 = new Thread(addMoney,"001");
         Thread thread02 = new Thread(subMoney,"002");
+        Thread thread03 = new Thread(addMoney,"003");
+        Thread thread04 = new Thread(subMoney,"004");
 
         thread01.start();
         thread02.start();
+        thread03.start();
+        thread04.start();
+
 
     }
 }

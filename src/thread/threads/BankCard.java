@@ -14,7 +14,7 @@ public class BankCard {
 
     //存钱
     public synchronized void save(double m){
-        if(flag){ //true  有钱可以取钱
+        while(flag){ //true  有钱可以取钱
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -24,7 +24,7 @@ public class BankCard {
         money=money+m;
         System.out.println(Thread.currentThread().getName()+"存了1000，余额为"+money);
         flag=true;
-        this.notify();
+        this.notifyAll();
 
     }
 
@@ -32,7 +32,7 @@ public class BankCard {
 
     //取钱
     public synchronized void take(double m){
-        if(!flag){
+        while(!flag){
             try {
                 this.wait();
             } catch (InterruptedException e) {
@@ -42,6 +42,6 @@ public class BankCard {
         money=money-m;
         System.out.println(Thread.currentThread().getName()+"取了1000，余额为"+money);
         flag=false;
-        this.notify();
+        this.notifyAll();
     }
 }
