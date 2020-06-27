@@ -16,7 +16,7 @@ public class Callable {
             int sum;
             @Override
             public Integer call() throws Exception {
-                System.out.println(Thread.currentThread().getName()+".......");
+                System.out.println("执行任务的线程是："+Thread.currentThread().getName()+".......");
                 for(int i=0;i<=100;i++) {
                     sum+=i;
                 }
